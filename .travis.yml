@@ -1,4 +1,6 @@
 language: python
+python:
+  - "3.8"
 install:
   - gem install mdl
   - pip install rozental-as-a-service
