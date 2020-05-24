@@ -1,0 +1,6 @@
+language: python
+install:
+  - gem install mdl
+  - pip install rozental-as-a-service
+script:
+  - make check
