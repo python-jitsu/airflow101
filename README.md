@@ -48,7 +48,7 @@
 - [Airflow tutorial](https://airflow.apache.org/docs/stable/tutorial.html).
 - [Airflow Scheduling & Triggers](https://airflow.apache.org/docs/stable/scheduler.html).
 - [Getting started with Apache Airflow](https://towardsdatascience.com/getting-started-with-apache-airflow-df1aa77d7b1b).
-- [Nginx – Serving Static Content](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/)
+- [Nginx – Serving Static Content](https://docs.nginx.com/nginx/admin-guide/web-server/serving-static-content/).
 
 ## Contributing
 
