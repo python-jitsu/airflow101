@@ -54,30 +54,47 @@
 
 #### Challenge
 
-1. Сделать DAG из нескольких шагов, собирающий данные по заказам, проверяющий статусы транзакций через API и складывающий результат в базу данных
-1. Данные по заказам брать в виде csv-файла [отсюда](https://airflow101.python-jitsu.club/orders.csv)
-1. Данные по статусам транзакций хранятся в виде json [тут](https://api.jsonbin.io/b/5ed7391379382f568bd22822)
-1. Целевая база данных &mdash; postgres. Данные в ней будут проверяться организаторами
+1. Сделать DAG из нескольких шагов, собирающий данные по заказам, проверяющий
+   статусы транзакций через API и складывающий результат в базу данных
+1. Данные по заказам брать в виде csv-файла
+   [отсюда](https://airflow101.python-jitsu.club/orders.csv)
+1. Данные по статусам транзакций хранятся в виде json
+   [тут](https://api.jsonbin.io/b/5ed7391379382f568bd22822)
+1. Данные о товарах и пользователях живут в PostgreSQL БД (доступ в тг чате).
+1. Результаты складывать в другую PostgreSQL БД (доступ к ней будет у вас в
+   личке). Именно в ней должен лежить финальный датасет.
 
 Требования к DAG:
 
-- На каждый источник должен быть один оператор
-- Повторные выполнения DAG должны обновлять имеющиеся данные. То есть, если статуст транзакции изменился на "оплачен", то это должно быть отражено в датасете
-- Из любого источника могут приходить грязные данные. Делайте чистку: удаляйте дубли, стрипайте строки, проверяйте на null/None
-- Логин/пароль для доступа в postgres базу надо получить у оргов (dbname совпадает с вашим логином)
+- На каждый источник должен быть один оператор.
+- Повторные выполнения DAG должны обновлять имеющиеся данные. То есть,
+  если статус транзакции изменился на "оплачен", то это должно быть
+  отражено в датасете.
+- Из любого источника могут приходить грязные данные. Делайте чистку:
+  удаляйте дубли, стрипайте строки, проверяйте на null/None.
+- Логин/пароль для доступа в postgres базу надо получить у оргов
+  (dbname совпадает с вашим логином).
 - Прежде чем писать в постгрес, надо убедиться, что там есть схема
-- Вы можете использовать pandas, но вообще в благородных домах pandas не тянут "в продакшен"
-- Финальный датасет содержит следующие колонки: name, age, good_title, date, payment_status, total_price, amount, last_modified_at
+  и таблица.
+- Вы можете использовать pandas, но вообще в благородных домах
+  pandas не тянут "в продакшен".
+- Финальный датасет содержит следующие колонки: `name`, `age`,
+  `good_title`, `date`, `payment_status`, `total_price`, `amount`, `last_modified_at`.
 
 #### Материалы для изучения
 
 Дополнительные ссылки на почитать к сегодняшнему вебинару:
-1. [Пример конфига nginx](https://airflow.apache.org/docs/stable/howto/run-behind-proxy.html)
-2. [Как безопасно хранить пароли в connection](https://airflow.apache.org/docs/stable/howto/secure-connections.html)
-3. [Как запустить airflow как сервис](https://airflow.apache.org/docs/stable/howto/run-with-systemd.html)
-4. Все говорят, что динамические даги делать нельзя, а [тут](https://blog.pythian.com/creating-dynamic-tasks-using-apache-airflow/) говорят что можно. (Подумайте какие у этого могут быть проблемы)
-5. Посмотреть на примеры пайплайнов и организацию кода: [airflow в cloud compose](https://blog.freetrade.io/how-we-simplified-our-data-pipeline-54f377fad3c), [о том как дробить даг на таски и операторы](https://gtoonstra.github.io/etl-with-airflow/platform.html), [как собирать пайплайн из простых конфигов](https://humansofdata.atlan.com/2018/08/airflow-meta-data-engineering-disha/)
 
+- [Пример конфига nginx](https://airflow.apache.org/docs/stable/howto/run-behind-proxy.html)
+- [Как безопасно хранить пароли в connection](https://airflow.apache.org/docs/stable/howto/secure-connections.html)
+- [Как запустить airflow как сервис](https://airflow.apache.org/docs/stable/howto/run-with-systemd.html)
+- Все говорят, что динамические даги делать нельзя, а
+  [тут](https://blog.pythian.com/creating-dynamic-tasks-using-apache-airflow/)
+  говорят что можно (подумайте какие у этого могут быть проблемы).
+- Посмотреть на примеры пайплайнов и организацию кода:
+  [airflow в cloud compose](https://blog.freetrade.io/how-we-simplified-our-data-pipeline-54f377fad3c),
+  [о том как дробить даг на таски и операторы](https://gtoonstra.github.io/etl-with-airflow/platform.html),
+  [как собирать пайплайн из простых конфигов](https://humansofdata.atlan.com/2018/08/airflow-meta-data-engineering-disha/).
 
 ## Contributing
 
